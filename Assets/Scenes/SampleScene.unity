@@ -1783,12 +1783,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7b0b91a356d0c1047ae3f2d3c2d319dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.056
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b0b91a356d0c1047ae3f2d3c2d319dc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.066
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b0b91a356d0c1047ae3f2d3c2d319dc,
         type: 3}
@@ -1870,6 +1870,8 @@ MonoBehaviour:
     m_Bits: 1
   ShootingButton: 67108864
   LinePrefab: {fileID: 799262850360198050, guid: 2d6e380ddcddc7f439c86b3d5d098b18,
+    type: 3}
+  RayImpactPrefab: {fileID: 8398849133475502218, guid: b6d75d1502d4f41488914e7be88ae444,
     type: 3}
   ShootingPoint: {fileID: 948309865}
   MaxLineDistance: 5

@@ -7,6 +7,7 @@ public class MagicWand : MonoBehaviour
     public LayerMask layerMask;
     public OVRInput.RawButton ShootingButton;
     public LineRenderer LinePrefab;
+    public GameObject RayImpactPrefab;
     public Transform ShootingPoint;
     public float MaxLineDistance = 5;
     public float LineShowTimer = 0.3f;
@@ -40,6 +41,11 @@ public class MagicWand : MonoBehaviour
         if (bHasHit)
         {
             endPoint = hit.point;
+
+            Quaternion rayImpactRotation = Quaternion.LookRotation(-hit.normal);
+
+            GameObject rayImpact = Instantiate(RayImpactPrefab, hit.point, rayImpactRotation);
+            Destroy(rayImpact, 1);
         }
         else
         {
