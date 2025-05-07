@@ -38,14 +38,25 @@ public class MagicWand : MonoBehaviour
 
         Vector3 endPoint = Vector3.zero;
 
+        //Use Dependency Injection in future
         if (bHasHit)
         {
             endPoint = hit.point;
 
-            Quaternion rayImpactRotation = Quaternion.LookRotation(-hit.normal);
+            GoblinComponent goblin = hit.transform.GetComponentInParent<GoblinComponent>();
 
-            GameObject rayImpact = Instantiate(RayImpactPrefab, hit.point, rayImpactRotation);
-            Destroy(rayImpact, 1);
+            if(goblin)
+            {
+                hit.collider.enabled = false;
+                goblin.Die();
+            }
+            else
+            {
+                Quaternion rayImpactRotation = Quaternion.LookRotation(-hit.normal);
+
+                GameObject rayImpact = Instantiate(RayImpactPrefab, hit.point, rayImpactRotation);
+                Destroy(rayImpact, 1);
+            }
         }
         else
         {

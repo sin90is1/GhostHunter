@@ -8,11 +8,11 @@ public class EnemySpawner : MonoBehaviour
     public float spawnTimer = 1;
     public GameObject prefabToSpawn;
 
-    public float minEdgeDistance = 0.3f;
+    public float minEdgeDistance = 0;
     public MRUKAnchor.SceneLabels SpawnLabel;
     public float NormalOffset = 0;
 
-    public int SpawnTry = 1000;
+    public int SpawnTry = 100;
 
     private float timer;
 
@@ -40,24 +40,23 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnGhost()
     {
         MRUKRoom room = MRUK.Instance.GetCurrentRoom();
+        if (!room) return;
 
-        int currentTry = 0;
-
-        while(currentTry < SpawnTry)
+        for (int i = 0; i < SpawnTry; i++)
         {
-            bool bHasFoundPosition = room.GenerateRandomPositionOnSurface(MRUK.SurfaceType.VERTICAL, minEdgeDistance, LabelFilter.Included(SpawnLabel), out Vector3 pos, out Vector3 norm);
-            if (bHasFoundPosition)
+            if (room.GenerateRandomPositionOnSurface(
+                MRUK.SurfaceType.FACING_UP,
+                minEdgeDistance,
+                LabelFilter.Included(SpawnLabel),
+                out Vector3 pos,
+                out Vector3 norm))
             {
-                Vector3 randomPositionNormalOffset = pos + norm * NormalOffset;
-                randomPositionNormalOffset.y = 0;
-
-                Instantiate(prefabToSpawn, randomPositionNormalOffset, Quaternion.identity);
+                Vector3 spawnPos = pos + norm * NormalOffset;
+                // Consider keeping y position for vertical surfaces
+                Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
                 return;
-            }
-            else
-            {
-                currentTry++;
             }
         }
     }
+    
 }
