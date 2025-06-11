@@ -34,10 +34,10 @@ void Start()
         SpawnedFairies.Remove(orb);
         Destroy(orb);
 
-        if(SpawnedFairies.Count == 0 )
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        }
+//         if(SpawnedFairies.Count == 0 )
+//         {
+//             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+//         }
     }
 
     public void SpawnFairy()
